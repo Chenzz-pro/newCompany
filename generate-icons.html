@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TabBar 图标生成器</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            padding: 40px;
+            background: #f5f7fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1d2129;
+            margin-bottom: 30px;
+        }
+        .icon-group {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .icon-item {
+            text-align: center;
+        }
+        .icon-item h3 {
+            margin: 10px 0 5px;
+            color: #1d2129;
+            font-size: 14px;
+        }
+        .icon-item p {
+            color: #86909c;
+            font-size: 12px;
+            margin: 0;
+        }
+        svg {
+            width: 81px;
+            height: 81px;
+            border: 1px solid #e5e6eb;
+            border-radius: 4px;
+            background: white;
+        }
+        .instructions {
+            background: #fff7e6;
+            border-left: 4px solid #ff7d00;
+            padding: 16px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .instructions h3 {
+            margin: 0 0 8px;
+            color: #d46b08;
+        }
+        .instructions ol {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .instructions li {
+            margin: 4px 0;
+            color: #595959;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 TabBar 图标设计</h1>
+        
+        <div class="instructions">
+            <h3>使用说明：</h3>
+            <ol>
+                <li>右键点击每个图标 → "图片另存为" → 保存为对应文件名</li>
+                <li>或使用截图工具截取图标区域</li>
+                <li>保存到项目目录：<code>static/icons/</code></li>
+                <li>确保图标尺寸为 81x81 像素（微信小程序推荐）</li>
+            </ol>
+        </div>
+
+        <!-- 首页图标 -->
+        <div class="icon-group">
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#999999" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 35 L40.5 12 L71 35 L71 70 L52 70 L52 50 L29 50 L29 70 L10 70 Z"/>
+                        <rect x="33" y="50" width="15" height="20" rx="2"/>
+                    </g>
+                </svg>
+                <h3>home.png</h3>
+                <p>首页（未选中）</p>
+            </div>
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#165DFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10 35 L40.5 12 L71 35 L71 70 L52 70 L52 50 L29 50 L29 70 L10 70 Z" fill="#E8F3FF"/>
+                        <rect x="33" y="50" width="15" height="20" rx="2" fill="#165DFF"/>
+                    </g>
+                </svg>
+                <h3>home-active.png</h3>
+                <p>首页（选中）</p>
+            </div>
+        </div>
+
+        <!-- 招聘图标 -->
+        <div class="icon-group">
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#999999" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="15" y="15" width="51" height="51" rx="6"/>
+                        <line x1="15" y1="30" x2="66" y2="30"/>
+                        <circle cx="25" cy="22" r="3"/>
+                        <circle cx="35" cy="22" r="3"/>
+                        <circle cx="45" cy="22" r="3"/>
+                        <line x1="25" y1="40" x2="56" y2="40"/>
+                        <line x1="25" y1="50" x2="56" y2="50"/>
+                        <line x1="25" y1="60" x2="45" y2="60"/>
+                    </g>
+                </svg>
+                <h3>recruit.png</h3>
+                <p>招聘（未选中）</p>
+            </div>
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#165DFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="15" y="15" width="51" height="51" rx="6" fill="#E8F3FF"/>
+                        <line x1="15" y1="30" x2="66" y2="30"/>
+                        <circle cx="25" cy="22" r="3" fill="#165DFF"/>
+                        <circle cx="35" cy="22" r="3" fill="#165DFF"/>
+                        <circle cx="45" cy="22" r="3" fill="#165DFF"/>
+                        <line x1="25" y1="40" x2="56" y2="40"/>
+                        <line x1="25" y1="50" x2="56" y2="50"/>
+                        <line x1="25" y1="60" x2="45" y2="60"/>
+                    </g>
+                </svg>
+                <h3>recruit-active.png</h3>
+                <p>招聘（选中）</p>
+            </div>
+        </div>
+
+        <!-- 关于图标 -->
+        <div class="icon-group">
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#999999" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="40.5" cy="40.5" r="25"/>
+                        <path d="M40.5 25 L40.5 45 M40.5 55 L40.5 56"/>
+                        <circle cx="40.5" cy="40.5" r="2" fill="#999999"/>
+                    </g>
+                </svg>
+                <h3>about.png</h3>
+                <p>关于（未选中）</p>
+            </div>
+            <div class="icon-item">
+                <svg viewBox="0 0 81 81" xmlns="http://www.w3.org/2000/svg">
+                    <g fill="none" stroke="#165DFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="40.5" cy="40.5" r="25" fill="#E8F3FF"/>
+                        <path d="M40.5 25 L40.5 45 M40.5 55 L40.5 56"/>
+                        <circle cx="40.5" cy="40.5" r="2" fill="#165DFF"/>
+                    </g>
+                </svg>
+                <h3>about-active.png</h3>
+                <p>关于（选中）</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

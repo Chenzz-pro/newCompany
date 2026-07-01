@@ -1,0 +1,23 @@
+{
+	"name": "企业官网招聘",
+	"appid": "__UNI__newCompany",
+	"description": "企业品牌展示与线上招聘小程序",
+	"versionName": "1.0.0",
+	"versionCode": "100",
+	"transformPx": false,
+	"mp-weixin": {
+		"appid": "wxdaf03ad40dc21ef5",
+		"setting": {
+			"urlCheck": false,
+			"es6": true,
+			"postcss": true,
+			"minified": true
+		},
+		"usingComponents": true,
+		"permission": {
+			"scope.userLocation": {
+				"desc": "用于地图导航到公司位置"
+			}
+		}
+	}
+}

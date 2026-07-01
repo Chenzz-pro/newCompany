@@ -1,0 +1,15 @@
+{
+	"name": "newCompany",
+	"version": "1.0.0",
+	"description": "企业官网招聘小程序",
+	"main": "main.js",
+	"scripts": {
+		"dev": "uni",
+		"build": "uni build"
+	},
+	"dependencies": {
+		"@dcloudio/uni-app": "^2.0.0",
+		"@dcloudio/uni-mp-weixin": "^2.0.0"
+	},
+	"devDependencies": {}
+}

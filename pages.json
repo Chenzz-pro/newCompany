@@ -1,0 +1,121 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "企业官网",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/recruit/list",
+			"style": {
+				"navigationBarTitleText": "人才招聘",
+				"enablePullDownRefresh": true,
+				"backgroundTextStyle": "light"
+			}
+		},
+		{
+			"path": "pages/recruit/detail",
+			"style": {
+				"navigationBarTitleText": "岗位详情"
+			}
+		},
+		{
+			"path": "pages/recruit/apply",
+			"style": {
+				"navigationBarTitleText": "投递简历"
+			}
+		},
+		{
+			"path": "pages/about/index",
+			"style": {
+				"navigationBarTitleText": "关于我们"
+			}
+		},
+		{
+			"path": "pages/admin/job-edit",
+			"style": {
+				"navigationBarTitleText": "发布岗位",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/admin/job-manage",
+			"style": {
+				"navigationBarTitleText": "我的岗位",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/admin/resume-list",
+			"style": {
+				"navigationBarTitleText": "收到的简历",
+				"navigationStyle": "custom",
+				"enablePullDownRefresh": true
+			}
+		},
+		{
+			"path": "pages/admin/resume-detail",
+			"style": {
+				"navigationBarTitleText": "简历详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/mine/profile",
+			"style": {
+				"navigationBarTitleText": "个人资料",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/user/my-deliver",
+			"style": {
+				"navigationBarTitleText": "我的投递",
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "企业官网",
+		"navigationBarBackgroundColor": "#0A2870",
+		"backgroundColor": "#0A2870",
+		"backgroundTextStyle": "dark"
+	},
+	"tabBar": {
+		"color": "#96B8F0",
+		"selectedColor": "#73C0FF",
+		"backgroundColor": "#0A2870",
+		"borderStyle": "white",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "static/icons/home.png",
+				"selectedIconPath": "static/icons/home-active.png"
+			},
+			{
+				"pagePath": "pages/recruit/list",
+				"text": "招聘",
+				"iconPath": "static/icons/recruit.png",
+				"selectedIconPath": "static/icons/recruit-active.png"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"text": "我的",
+				"iconPath": "static/icons/mine.png",
+				"selectedIconPath": "static/icons/mine-active.png"
+			}
+		]
+	},
+	"cloud": true
+}

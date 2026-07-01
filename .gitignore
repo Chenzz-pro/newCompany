@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build output
+unpackage/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
+
+# Cloud function node_modules (optional - keep if needed for deployment)
+# cloudfunctions/*/node_modules/
