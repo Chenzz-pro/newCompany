@@ -29,7 +29,7 @@ const config = {
 	pageSize: 10,
 	
 	// 岗位分类
-	jobCategories: ['全部', '新媒体运营','直播主播','视频摄制'],
+	jobCategories: ['全部', '新媒体运营','直播主播','视频摄制','其它'],
 	
 	// 工作地点
 	workLocations: ['全部', '厦门', '福州', '泉州', '外地']

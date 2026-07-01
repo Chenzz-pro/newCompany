@@ -46,7 +46,7 @@
 		<!-- 上传生活照 -->
 		<view class="form-section card">
 			<view class="form-item">
-				<text class="form-label">上传生活照</text>
+				<text class="form-label"><text class="required">*</text> 上传生活照</text>
 				<view class="upload-area">
 					<view class="upload-list">
 						<view class="upload-item" v-for="(img, idx) in form.images" :key="idx">
@@ -188,6 +188,10 @@ export default {
 			}
 			if (!this.form.position) {
 				showToast('请选择意向岗位')
+				return false
+			}
+			if (!this.form.images.length) {
+				showToast('请上传生活照')
 				return false
 			}
 			return true
@@ -356,7 +360,7 @@ export default {
 	width: 40rpx;
 	height: 40rpx;
 	background: rgba(0, 0, 0, 0.6);
-	color: rgba(10, 40, 140, 0.75);
+	color: #FFFFFF;
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
