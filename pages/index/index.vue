@@ -72,7 +72,7 @@
 			<!-- 凯风云燊传媒 -->
 			<view class="company-card">
 				<view class="company-card-header">
-					<view class="company-badge">母公司</view>
+					<view class="company-badge">总部</view>
 					<text class="company-date">2023年创立</text>
 				</view>
 				<text class="company-name">厦门市凯风云燊传媒有限公司</text>
@@ -608,10 +608,10 @@ export default {
 .nav-title {
 	font-size: 36rpx;
 	font-weight: 700;
-	color: #73C0FF;
+	color: #FFFFFF;
 	letter-spacing: 4rpx;
 	margin-bottom: 4rpx;
-	text-shadow: 0 0 16rpx rgba(106, 173, 255, 0.5);
+	text-shadow: 0 0 16rpx rgba(255, 255, 255, 0.4);
 }
 
 .nav-subtitle {
@@ -743,8 +743,8 @@ export default {
 .stat-num {
 	font-size: 48rpx;
 	font-weight: 700;
-	color: #73C0FF;
-	text-shadow: 0 0 10rpx rgba(106, 173, 255, 0.4);
+	color: #FFFFFF;
+	text-shadow: 0 0 10rpx rgba(255, 255, 255, 0.3);
 	line-height: 1.2;
 }
 
@@ -752,7 +752,7 @@ export default {
 	font-size: 24rpx;
 	font-weight: 400;
 	margin-left: 4rpx;
-	color: #73C0FF;
+	color: #FFFFFF;
 }
 
 .stat-label {
@@ -832,18 +832,20 @@ export default {
 }
 
 .ctag {
-	background: rgba(40, 120, 255, 0.25);
-	color: #73C0FF;
+	background: rgba(40, 120, 255, 0.3);
+	color: #FFFFFF;
 	font-size: 22rpx;
 	padding: 6rpx 16rpx;
 	border-radius: 4rpx;
-	border: 1rpx solid rgba(40, 120, 255, 0.35);
+	border: 1rpx solid rgba(115, 192, 255, 0.3);
+	text-shadow: 0 0 6rpx rgba(255, 255, 255, 0.2);
 }
 
 .ctag-sub {
-	background: rgba(209, 104, 232, 0.1);
-	color: #D168E8;
-	border: 1rpx solid rgba(209, 104, 232, 0.15);
+	background: rgba(209, 104, 232, 0.2);
+	color: #FFFFFF;
+	border: 1rpx solid rgba(209, 104, 232, 0.25);
+	text-shadow: 0 0 6rpx rgba(255, 255, 255, 0.2);
 }
 
 /* 连接线 */
@@ -918,12 +920,13 @@ export default {
 .tl-year {
 	font-size: 32rpx;
 	font-weight: 700;
-	color: #73C0FF;
+	color: #FFFFFF;
+	text-shadow: 0 0 8rpx rgba(255, 255, 255, 0.3);
 }
 
 .tl-month {
 	font-size: 22rpx;
-	color: #96B8F0;
+	color: #FFFFFF;
 }
 
 /* 中间轴线 */
@@ -1063,14 +1066,14 @@ export default {
 .hl-num {
 	font-size: 64rpx;
 	font-weight: 700;
-	color: #73C0FF;
-	text-shadow: 0 0 20rpx rgba(106, 173, 255, 0.4);
+	color: #FFFFFF;
+	text-shadow: 0 0 20rpx rgba(255, 255, 255, 0.4);
 	line-height: 1;
 }
 
 .hl-unit {
 	font-size: 24rpx;
-	color: #73C0FF;
+	color: #FFFFFF;
 	margin-left: 8rpx;
 }
 
@@ -1106,12 +1109,13 @@ export default {
 }
 
 .nb {
-	background: rgba(40, 120, 255, 0.2);
-	color: #73C0FF;
+	background: rgba(40, 120, 255, 0.25);
+	color: #FFFFFF;
 	font-size: 22rpx;
 	padding: 6rpx 16rpx;
 	border-radius: 20rpx;
-	border: 1rpx solid rgba(106, 173, 255, 0.18);
+	border: 1rpx solid rgba(115, 192, 255, 0.25);
+	text-shadow: 0 0 6rpx rgba(255, 255, 255, 0.2);
 }
 
 /* 核心业务 */
