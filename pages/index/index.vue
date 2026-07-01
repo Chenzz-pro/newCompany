@@ -235,6 +235,57 @@
 				</view>
 			</view>
 
+			<!-- 团建照片 -->
+			<view class="team-section card">
+				<view class="team-header">
+					<view class="team-header-left">
+						<text class="section-title team-title">团建照片</text>
+						<text class="team-subtitle">月2次大团建 · TEAM BUILDING</text>
+					</view>
+					<view class="team-badge">
+						<text class="badge-dot"></text>
+						<text>{{ teamPhotos.length }}张</text>
+					</view>
+				</view>
+
+				<view class="team-swiper-wrap" v-if="teamPhotos.length">
+					<swiper class="team-swiper" :indicator-dots="false" :autoplay="true" :interval="3500"
+						:duration="600" :circular="true" @change="onTeamSwiperChange"
+						previous-margin="30rpx" next-margin="30rpx">
+						<swiper-item v-for="(item, index) in teamPhotos" :key="index">
+							<view class="team-slide" :class="{ 'slide-active': teamCurrent === index }"
+								@tap="previewTeamPhoto(index)">
+								<image :src="item.url" class="team-photo" mode="aspectFill"></image>
+								<view class="team-photo-overlay">
+									<text class="team-photo-desc">{{ item.desc || '团建活动' }}</text>
+								</view>
+							</view>
+						</swiper-item>
+					</swiper>
+
+					<!-- 自定义指示器 -->
+					<view class="team-indicators">
+						<view v-for="(item, idx) in teamPhotos" :key="idx"
+							:class="['team-dot', teamCurrent === idx ? 'dot-active' : '']"
+							@tap="teamCurrent = idx"></view>
+					</view>
+
+					<!-- 脉冲光点装饰 -->
+					<view class="team-pulse-dot dot-tl"></view>
+					<view class="team-pulse-dot dot-tr"></view>
+					<view class="team-pulse-dot dot-bl"></view>
+				</view>
+
+				<!-- 空状态占位 -->
+				<view class="team-empty" v-else>
+					<view class="team-empty-icon">
+						<text class="empty-pulse-ring"></text>
+						<text>📸</text>
+					</view>
+					<text class="team-empty-text">团建照片加载中...</text>
+				</view>
+			</view>
+
 			<!-- 底部联系我们 -->
 			<view class="contact-section card">
 				<view class="section-title">联系我们</view>
@@ -298,6 +349,8 @@
 				isPlaying: false,
 				companyInfo: {},
 				businessList: [],
+				teamPhotos: [],
+				teamCurrent: 0,
 				companyPhone: config.company.phone,
 				companyAddress: config.company.address,
 				companyWechat: config.company.wechat,
@@ -379,7 +432,8 @@
 					const [swiperRes, videoRes, companyRes] = await Promise.all([
 						this.loadSwipers(),
 						this.loadVideo(),
-						this.loadCompanyInfo()
+						this.loadCompanyInfo(),
+						this.loadTeamPhotos(),
 					])
 				} catch (e) {
 					console.error('首页数据加载失败:', e)
@@ -467,6 +521,48 @@
 					// 使用config中的默认数据
 				}
 			},
+			async loadTeamPhotos() {
+				try {
+					const res = await callCloud('getTeamPhotos')
+					if (res && res.data && res.data.length) {
+						const cloudFileIDs = res.data
+							.map(item => item.url)
+							.filter(url => url && url.startsWith('cloud://'))
+						if (cloudFileIDs.length) {
+							const tempRes = await new Promise((resolve, reject) => {
+								wx.cloud.getTempFileURL({
+									fileList: cloudFileIDs,
+									success: resolve,
+									fail: reject
+								})
+							})
+							const fileMap = {}
+							tempRes.fileList.forEach(f => {
+								if (f.tempFileURL) fileMap[f.fileID] = f.tempFileURL
+							})
+							this.teamPhotos = res.data.map(item => ({
+								...item,
+								url: fileMap[item.url] || item.url
+							}))
+						} else {
+							this.teamPhotos = res.data
+						}
+					}
+				} catch (e) {
+					console.error('加载团建照片失败:', e)
+					this.teamPhotos = []
+				}
+			},
+
+			onTeamSwiperChange(e) {
+				this.teamCurrent = e.detail.current
+			},
+
+			previewTeamPhoto(idx) {
+				const urls = this.teamPhotos.map(p => p.url)
+				previewImage(urls, idx)
+			},
+
 
 			onSwiperTap(item) {
 				if (item.link) {
@@ -1311,6 +1407,203 @@
 	@keyframes arrow-pulse {
 		0%, 100% { transform: scale(1); opacity: 0.4; }
 		50% { transform: scale(1.4); opacity: 1; }
+	}
+
+	/* ===== 团建照片 ===== */
+	.team-section {
+		margin: 0 24rpx 32rpx;
+		padding: 0;
+		z-index: 1;
+		animation: cardBreath 3s ease-in-out infinite;
+	}
+
+	.team-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 28rpx 30rpx 20rpx;
+		position: relative;
+		z-index: 1;
+		border-bottom: 1rpx solid rgba(123,47,253,0.15);
+	}
+
+	.team-header-left {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.team-title {
+		padding: 0;
+		font-size: 32rpx;
+	}
+
+	.team-subtitle {
+		font-size: 20rpx;
+		color: #FF2EC4;
+		letter-spacing: 2rpx;
+		margin-top: 4rpx;
+		text-shadow: 0 0 6rpx rgba(255,46,196,0.3);
+	}
+
+	.team-badge {
+		display: flex;
+		align-items: center;
+		background: rgba(123,47,253,0.15);
+		padding: 8rpx 18rpx;
+		border-radius: 20rpx;
+		font-size: 22rpx;
+		color: #00E5FF;
+		border: 1rpx solid rgba(0,229,255,0.25);
+		gap: 8rpx;
+		flex-shrink: 0;
+	}
+
+	.badge-dot {
+		width: 12rpx;
+		height: 12rpx;
+		border-radius: 50%;
+		background: #00E5FF;
+		box-shadow: 0 0 8rpx rgba(0,229,255,0.6);
+		animation: glowPulse 2s infinite;
+	}
+
+	/* 轮播容器 */
+	.team-swiper-wrap {
+		position: relative;
+		padding: 24rpx 0;
+		z-index: 1;
+	}
+
+	.team-swiper {
+		width: 100%;
+		height: 420rpx;
+	}
+
+	.team-slide {
+		position: relative;
+		height: 100%;
+		margin: 0 12rpx;
+		border-radius: 12rpx;
+		overflow: hidden;
+		border: 1rpx solid rgba(123,47,253,0.25);
+		box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.3);
+		transition: all 0.4s ease;
+	}
+
+	.team-slide.slide-active {
+		border-color: rgba(0,229,255,0.4);
+		box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.3), 0 0 24rpx rgba(0,229,255,0.2);
+	}
+
+	.team-photo {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+
+	.team-photo-overlay {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: linear-gradient(transparent, rgba(10,14,39,0.85));
+		padding: 40rpx 24rpx 20rpx;
+	}
+
+	.team-photo-desc {
+		font-size: 26rpx;
+		color: #FFFFFF;
+		font-weight: 600;
+		text-shadow: 0 0 8rpx rgba(255,255,255,0.2);
+	}
+
+	/* 自定义指示器 */
+	.team-indicators {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 16rpx;
+		padding: 16rpx 0 4rpx;
+		position: relative;
+		z-index: 1;
+	}
+
+	.team-dot {
+		width: 12rpx;
+		height: 12rpx;
+		border-radius: 50%;
+		background: rgba(123,47,253,0.3);
+		border: 2rpx solid rgba(0,229,255,0.3);
+		transition: all 0.3s ease;
+	}
+
+	.team-dot.dot-active {
+		width: 28rpx;
+		border-radius: 6rpx;
+		background: #00E5FF;
+		border-color: #00E5FF;
+		box-shadow: 0 0 12rpx rgba(0,229,255,0.6);
+	}
+
+	/* 脉冲装饰光点 */
+	.team-pulse-dot {
+		position: absolute;
+		width: 10rpx;
+		height: 10rpx;
+		border-radius: 50%;
+		background: #7B2FFD;
+		z-index: 2;
+		animation: dotPulse 2s ease-in-out infinite;
+		pointer-events: none;
+	}
+
+	.dot-tl { top: 30rpx; left: 30rpx; animation-delay: 0s; }
+	.dot-tr { top: 30rpx; right: 30rpx; animation-delay: 0.7s; }
+	.dot-bl { bottom: 20rpx; left: 50%; animation-delay: 1.4s; }
+
+	@keyframes dotPulse {
+		0%,100% { opacity: 0.3; transform: scale(1); box-shadow: 0 0 6rpx rgba(123,47,253,0.3); }
+		50% { opacity: 1; transform: scale(1.8); box-shadow: 0 0 16rpx rgba(123,47,253,0.7); }
+	}
+
+	/* 空状态 */
+	.team-empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 80rpx 0;
+		position: relative;
+		z-index: 1;
+	}
+
+	.team-empty-icon {
+		position: relative;
+		width: 100rpx;
+		height: 100rpx;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 56rpx;
+		margin-bottom: 24rpx;
+	}
+
+	.empty-pulse-ring {
+		position: absolute;
+		top: 0; left: 0; right: 0; bottom: 0;
+		border-radius: 50%;
+		border: 2rpx solid rgba(123,47,253,0.3);
+		animation: ringPulse 1.8s ease-in-out infinite;
+	}
+
+	@keyframes ringPulse {
+		0%,100% { transform: scale(0.9); opacity: 0.5; border-color: rgba(123,47,253,0.3); }
+		50% { transform: scale(1.3); opacity: 0; border-color: rgba(0,229,255,0.6); }
+	}
+
+	.team-empty-text {
+		font-size: 26rpx;
+		color: #94A3B8;
 	}
 
 	/* ===== 联系我们 ===== */
